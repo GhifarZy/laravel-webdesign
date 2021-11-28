@@ -10,12 +10,13 @@
             <p style="font-size: 20px;" >Administrator</p>
             <div class="container">
                <div class="animate__animated animate__fadeInUp">
-                <form action="" method="post">
+                <form action="{{ Route('postLoginAdmin') }}" method="post">
                   @csrf
                   <div class="container">
                     <input type="text" placeholder="Masukkan Username" name="username" required>
-                    <input type="text" placeholder="Masukkan Password" name="password" required>
-                    <input type="hidden" value="" name="" required>
+                    <input type="password" placeholder="Masukkan Password" name="password" required>
+                    <input type="hidden" value="aktif" name="status" required>
+                    <input type="hidden" value="level" name="admin" required>
                     <button type="submit">submit</button>
                   </div>
                   </form>

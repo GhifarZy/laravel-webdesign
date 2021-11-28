@@ -10,12 +10,13 @@
             <p style="font-size: 20px;" >Register Members</p>
             <div class="container">
                <div class="animate__animated animate__fadeInUp">
-                <form action="" method="post">
+                <form action="{{ Route('postRegister') }}" method="post">
                   @csrf
                   <div class="container">
                     <input type="text" placeholder="Masukkan Username" name="username" required>
-                    <input type="text" placeholder="Masukkan Password" name="password" required>
-                    <input type="hidden" value="" name="" required>
+                    <input type="password" placeholder="Masukkan Password" name="password" required>
+                    <input type="hidden" value="member" name="level" required>
+                    <input type="hidden" value="nonaktif" name="status" required>
                     <button type="submit">Submit</button>
                   </div>
                   </form>

@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\profile;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class backendController extends Controller
 {
@@ -13,7 +16,19 @@ class backendController extends Controller
      */
     public function index()
     {
-        return view('content.adminContent');
+        $aktif = DB::table('user_level')
+            ->where('status', 'aktif')
+            ->count();
+        $nonaktif = DB::table('user_level')
+            ->where('status', 'nonaktif')
+            ->count();
+
+        $user = DB::table('user_level')->get();
+        return view('content.adminContent', compact([
+            'user',
+            'aktif',
+            'nonaktif',
+        ]));
     }
     public function indexMembers()
     {
@@ -31,7 +46,26 @@ class backendController extends Controller
     {
         return view('content.editDataMembers');
     }
+    public function indexIdMembers()
+    {
 
+        $aktif = DB::table('user_level')
+            ->where('status', 'aktif')
+            ->count();
+        $nonaktif = DB::table('user_level')
+            ->where('status', 'nonaktif')
+            ->count();
+
+        $username = Auth::User()->username;
+        $profile = DB::table('profiles')
+            ->where('username', $username)
+            ->get();
+        return view('content.dashboardMembers', compact([
+            'profile',
+            'aktif',
+            'nonaktif',
+        ]));
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -48,9 +82,21 @@ class backendController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function postMembers(Request $request)
     {
-        //
+        $gambar = $request->gambar;
+        $namaFile = $gambar->getClientOriginalName();
+
+        profile::create([
+            'nama' => $request->nama,
+            'username' => $request->username,
+            'pekerjaan' => $request->pekerjaan,
+            'alamat' => $request->alamat,
+            'gambar' => $namaFile,
+        ]);
+
+        $gambar->move(public_path() . '/gambarMember', $namaFile);
+        return redirect('dashboardIdMembers');
     }
 
     /**
