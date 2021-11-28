@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class landingController extends Controller
 {
@@ -13,10 +14,20 @@ class landingController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('landing.app');
+
+        if ($request) {
+            $members = DB::table('profiles')->where('id', 'like', '%' . $request->cari . '%')->get();
+        } else {
+            $members = DB::table('profiles')->get();
+        }
+
+        return view('landing.app', compact([
+            'members',
+        ]));
     }
+
     public function loginMember()
     {
         return view('landing.loginMember');
@@ -48,7 +59,7 @@ class landingController extends Controller
     }
     public function postLoginAdmin(Request $request)
     {
-        if (Auth::attempt($request->only('username', 'password', 'status', 'level'))) {
+        if (Auth::attempt($request->only('username', 'password', 'level'))) {
             return redirect('dashboardAdmin');
         }
         return redirect('loginAdmin');

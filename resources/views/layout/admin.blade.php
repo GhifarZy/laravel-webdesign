@@ -192,14 +192,14 @@
                 <h5 class="modal-title" id="exampleModalLabel">Add Members</h5>
                 </div>
                 <div class="modal-body">
-                    <form action="" method="" enctype="multipart/form-data">
+                    <form action="{{ Route('postAddMembers') }}" method="post" enctype="multipart/form-data">
                         @csrf
-                        <label for="" class="form-label">Nama</label>
-                        <input type="text" class="form-control" name="nama">
                         <label for="" class="form-label">Username</label>
                         <input type="text" class="form-control" name="username">
                         <label for="" class="form-label">Password</label>
                         <input type="password" class="form-control" name="password">
+                        <input type="hidden" value="member" name="level" required>
+                        <input type="hidden" value="aktif" name="status" required>
                     
                 </div>
                 <div class="modal-footer">
@@ -270,6 +270,7 @@
       
       table.dataTable.no-footer {
           border-bottom: none;
+          width: 100%;
       }
       
       th {

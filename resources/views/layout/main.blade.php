@@ -31,7 +31,7 @@
     <div class="container">
       <div class="navbar-translate">
         <a class="navbar-brand" href="/">
-          E - Procurement </a>
+          </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">
           <span class="sr-only">Toggle navigation</span>
           <span class="navbar-toggler-icon"></span>
@@ -64,72 +64,8 @@
     </div>
   </nav>
   @yield('tag')
-  <div class="main main-raised">
-    <div class="section section-basic">
-      <div class="container">
-        <div class="title">
-        </div>
-      <div class="container">
-        <table id="example" class="display" style="padding: 23px;width:100%">
-          <thead>
-              <tr>
-                <th>Tanggal Selesai</th>
-                  <th>Direktur Perusahaan</th>
-                  <th>Nama Perusahaan</th>
-                  <th width="255px" >Nama Pengadaan</th>
-              </tr>
-          </thead>
-          <tbody>
-           
-            <tr>
-              <td style="text-transform:capitalize;" scope="row">Test</td>
-              <td style="text-transform:capitalize;" scope="row">Test</td>
-              <td style="text-transform:capitalize;" scope="row">Test</td>
-              <td style="text-transform:capitalize;" scope="row">Test</td>
-            </tr>
-           
-          </tbody>
-        </table>
-      </div>
-      </div>
-    </div>
-  </div>
-  <!--  End Modal -->
-  <footer class="footer" data-background-color="black">
-    <div class="container">
-      <nav class="float-left">
-        <ul>
-          <li>
-            <a href="https://www.creative-tim.com/">
-              E-procurement
-            </a>
-          </li>
-          <li>
-            <a href="https://www.creative-tim.com/presentation">
-              About Us
-            </a>
-          </li>
-          <li>
-            <a href="https://www.creative-tim.com/blog">
-              Blog
-            </a>
-          </li>
-          <li>
-            <a href="https://www.creative-tim.com/license">
-              Licenses
-            </a>
-          </li>
-        </ul>
-      </nav>
-      <div class="copyright float-right">
-        &copy;
-        <script>
-          document.write(new Date().getFullYear())
-        </script>, made with <i class="material-icons">favorite</i> by
-        <a href="" target="_blank">ifrzdy_</a> 
-      </div>
-    </div>
-  </footer>
+  @yield('content')
+ 
   <!--   Core JS Files   -->
   {{-- <script src="{{asset ('landing/assets/js/core/jquery.min.js')}}" type="text/javascript"></script> --}}
   <script src="{{asset ('landing/assets/js/core/popper.min.js')}}" type="text/javascript"></script>

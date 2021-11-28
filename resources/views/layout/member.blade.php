@@ -60,7 +60,7 @@
           <span style="color: white;
           padding: 12px;
           border-radius: 23px;
-          width: 300px;" class="mb-0 text-sm  font-weight-bold">  <i class="ni ni-single-02"></i>&nbsp; Welcome, {{ Auth::User()->level }}</span>
+          width: 300px;" class="mb-0 text-sm  font-weight-bold">  <i class="ni ni-single-02"></i>&nbsp; Welcome, {{ Auth::User()->username }}</span>
           <!-- Navbar links -->
           <ul class="navbar-nav align-items-center  ml-md-auto ">
             <li class="nav-item d-xl-none">
@@ -86,7 +86,7 @@
               <div class="dropdown-menu  dropdown-menu-right ">
                 <span class="mb-0 text-sm  font-weight-bold">&nbsp;&nbsp;&nbsp;Status {{ Auth::User()->status }}</span>
                 <div class="dropdown-divider"></div>
-                <a href="{{ route('logoutMembers') }}" class="dropdown-item">
+                <a href="{{ Route('logoutMembers') }}" class="dropdown-item">
                   <i class="ni ni-user-run"></i>
                   <span>Logout</span>
                 </a>
@@ -166,34 +166,31 @@
     </div>
     <!-- Page content -->
     <div class="container-fluid mt--6">
-         
-          @yield('content')
+          <div class="card">
+              @yield('content')
+          </div>
 
         <!-- Modal -->
         <div class="modal fade" id="showForm" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Add Profile</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Add Members</h5>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ Route('postMembers') }}" method="post" enctype="multipart/form-data">
+                    <form action="{{ Route('postAddMembers') }}" method="post" enctype="multipart/form-data">
                         @csrf
-                        <label for="" class="form-label">Nama</label>
-                        <input type="text" class="form-control" name="nama">
                         <label for="" class="form-label">Username</label>
-                        <input type="text" value="{{ Auth::User()->username }}" class="form-control" name="username">
-                        <label for="" class="form-label">Pekerjaan</label>
-                        <input type="text" class="form-control" name="pekerjaan">
-                        <label for="" class="form-label">Alamat</label>
-                        <input type="text" class="form-control" name="alamat">
-                        <label for="" class="form-label">Gambar</label>
-                        <input type="file" class="form-control" name="gambar">
+                        <input type="text" class="form-control" name="username">
+                        <label for="" class="form-label">Password</label>
+                        <input type="password" class="form-control" name="password">
+                        <input type="hidden" value="member" name="level" required>
+                        <input type="hidden" value="aktif" name="status" required>
                     
                 </div>
                 <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="submit" style="background-color: #825ee4;color:white" class="btn btn-primary" onclick="return conirm('ingin menyimpan profile ini ? {{ Auth::User()->name }}')" >Submit</button>
+                <button type="submit" style="background-color: #825ee4;color:white" class="btn btn-primary">Submit</button>
                 </div>
             </form>
             </div>

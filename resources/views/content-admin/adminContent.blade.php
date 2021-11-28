@@ -3,12 +3,12 @@
 @section('tag', 'Administrator')
 @section('line', 'Administrator')
 @section('content')
-<center>
+<div style="overflow-x:auto;">
   <table id="example" class="display" style="padding: 23px;width:100%">
     <thead>
         <tr>
-          <th>No</th>
-            <th>Username</th>
+          <th style="width: 5px;" >No</th>
+            <th style="width: 160px;" >Username</th>
             <th>Status</th>
             <th>Level</th>
             <th style="width: 80px" >Action</th> 
@@ -16,16 +16,14 @@
     </thead>
     <tbody>
         @foreach ($user as $item)
-            
-        
-      <tr>
+         <tr>
           <td style="text-transform:capitalize;" scope="row">{{ $loop->iteration }}</td>
           <td style="text-transform:capitalize;" scope="row">{{ $item->username }}</td>
           <td style="text-transform:capitalize;" scope="row">{{ $item->status }}</td>  
           <td style="text-transform:capitalize;" scope="row">{{ $item->level }}</td>  
           <td>
-              <a href="editMembers" class="badge badge-info">Update</a>
-              <a href="addMembers" class="badge badge-success">Tambah Profile</a>
+              <a href="adds/{{ $item->id }}/Members" class="badge badge-info">Update</a>
+              <a href="add/{{ $item->id }}/Members" class="badge badge-success">Tambah Profile</a>
               <form action="" method="post" enctype="multipart/form-data" class="d-inline">
                 @csrf
                 <button class="badge badge-danger" style="border:none;" >Delete</button>
@@ -35,6 +33,6 @@
      @endforeach
     </tbody>
   </table>
-</center>
+</div>
 
 @endsection

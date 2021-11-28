@@ -16,7 +16,7 @@
                     <input type="text" placeholder="Masukkan Username" name="username" required>
                     <input type="password" placeholder="Masukkan Password" name="password" required>
                     <input type="hidden" value="aktif" name="status" required>
-                    <input type="hidden" value="level" name="admin" required>
+                    <input type="hidden" value="admin" name="level" required>
                     <button type="submit">submit</button>
                   </div>
                   </form>
