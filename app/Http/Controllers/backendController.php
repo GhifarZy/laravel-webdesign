@@ -328,8 +328,8 @@ class backendController extends Controller
     {
         $file = $request->file('file');
         $namaFile = $file->getClientOriginalName();
-        $file->move('gambarMember', $namaFile);
-        Excel::import(new dataMembersImport, public_path('/gambarMember/' . $namaFile));
+        $file->move('DataImport', $namaFile);
+        Excel::import(new dataMembersImport, public_path('/DataImport/' . $namaFile));
         return redirect('dashboardMembers');
     }
 }
