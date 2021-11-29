@@ -37,10 +37,10 @@
        <td style="text-transform:capitalize;" scope="row">{{ $item->alamat }}</td>  
        <td>
            <a href="edit/{{ $item->id }}/Members" class="badge badge-info">Update</a>
-             <form action="" method="post" class="d-inline">
+             <form action="{{ url('deleteMembers/' . $item->id) }}" method="post" class="d-inline">
                @csrf
                @method('delete')
-               <button style="border:none;" class="badge badge-danger">Delete</button>
+               <button style="border:none;" onclick="return confirm('ingin menghapus data profile ?')" class="badge badge-danger">Delete</button>
              </form>
        </td>      
           </tr>
@@ -60,20 +60,35 @@
                 <form action="{{ Route('postMembers') }}" method="post" enctype="multipart/form-data">
                     @csrf
                     <label for="" class="form-label">Nama</label>
-                    <input type="text" class="form-control" name="nama">
+                    <input type="text" class="form-control @error ('nama') is-invalid @enderror " name="nama">
+                    <div class="invalid-feedback">
+                      <b>masukkan nama!</b>
+                    </div>
                     <label for="" class="form-label">Username</label>
                     <input type="text" value="{{ Auth::User()->username }}" class="form-control @error ('username') is-invalid @enderror " name="username">
+                    <div class="invalid-feedback">
+                      <b>username sudah dipakai!</b>
+                    </div>
                     <label for="" class="form-label">Pekerjaan</label>
-                    <input type="text" class="form-control" name="pekerjaan">
+                    <input type="text" class="form-control @error ('pekerjaan') is-invalid @enderror" name="pekerjaan">
+                    <div class="invalid-feedback">
+                      <b>masukkan pekerjaan!</b>
+                    </div>
                     <label for="" class="form-label">Alamat</label>
-                    <input type="text" class="form-control" name="alamat">
+                    <input type="text" class="form-control @error ('alamat') is-invalid @enderror " name="alamat">
+                    <div class="invalid-feedback">
+                      <b>masukkan alamat!</b>
+                    </div>
                     <label for="" class="form-label">Gambar</label>
-                    <input type="file" class="form-control" name="gambar">
+                    <input type="file" class="form-control @error ('gambar') @enderror" name="gambar">
+                    <div class="invalid-feedback">
+                      <b>masukkan gambar!</b>
+                    </div>
                 
             </div>
             <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="submit" style="background-color: #825ee4;color:white" class="btn btn-primary" onclick="return conirm('ingin menyimpan profile ini ? {{ Auth::User()->name }}')" >Submit</button>
+            <button type="submit" style="background-color: #825ee4;color:white" class="btn btn-primary" >Submit</button>
             </div>
         </form>
         </div>

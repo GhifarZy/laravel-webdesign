@@ -40,6 +40,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('updateMemberInAdmin/{members}', [backendController::class, 'updateMemberInAdmin']);
     Route::post('updateDataMembers/{members}', [backendController::class, 'updateDataMembers']);
     Route::post('updateDataGambarMembers/{members}', [backendController::class, 'updateDataGambarMembers']);
+    Route::delete('deleteUser/{members}', [backendController::class, 'deleteUser']);
+    Route::delete('deleteProfiles/{members}', [backendController::class, 'deleteProfiles']);
 
     Route::get('/dataMembersExport', [backendController::class, 'dataMembersExport'])->name('dataMembersExport');
     Route::post('/dataMembersImport', [backendController::class, 'dataMembersImport'])->name('dataMembersImport');
@@ -51,5 +53,6 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('updateMembers/{members}', [backendController::class, 'updateMembers']);
     Route::post('updateGambarMembers/{members}', [backendController::class, 'updateGambarMembers']);
     Route::post('changePasswordBy/{members}', [backendController::class, 'changePasswordBy']);
+    Route::delete('deleteMembers/{members}', [backendController::class, 'deleteMembers']);
 
 });

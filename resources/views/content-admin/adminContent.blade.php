@@ -24,9 +24,10 @@
           <td>
               <a href="adds/{{ $item->id }}/Members" class="badge badge-info">Update</a>
               <a href="add/{{ $item->id }}/Members" class="badge badge-success">Tambah Profile</a>
-              <form action="" method="post" enctype="multipart/form-data" class="d-inline">
+              <form action="{{ url('deleteUser/' . $item->id ) }}" method="post" enctype="multipart/form-data" class="d-inline">
                 @csrf
-                <button class="badge badge-danger" style="border:none;" >Delete</button>
+                @method('delete')
+                <button class="badge badge-danger" style="border:none;" onclick="return confirm('ingin menghapus {{ $item->username }} ?')" >Delete</button>
             </form>
           </td>
      </tr>

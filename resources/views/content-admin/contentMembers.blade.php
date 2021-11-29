@@ -30,10 +30,10 @@
           <td style="text-transform:capitalize;" scope="row">{{ $item->alamat }}</td>  
           <td>
               <a href="editData/{{$item->id}}/Members" class="badge badge-info">Update</a>
-                <form action="" method="post" class="d-inline">
+                <form action="{{ url('deleteProfiles/' . $item->id ) }}" method="post" class="d-inline">
                   @csrf
                   @method('delete')
-                  <button style="border:none;" class="badge badge-danger">Delete</button>
+                  <button style="border:none;" onclick="return confirm('ingin mengahapus profile {{ $item->nama }} ?')" class="badge badge-danger">Delete</button>
                 </form>
           </td>
      </tr>

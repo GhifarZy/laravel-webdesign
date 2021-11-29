@@ -35,12 +35,15 @@
           <form action="{{ url('updateGambarMembers/' . $members->id) }}" method="post" enctype="multipart/form-data">
               @csrf
               <label for="" class="form-label">Gambar</label>
-              <input type="file" class="form-control" name="gambar">     
+              <input type="file" class="form-control @error ('gambar') is-invalid @enderror " name="gambar">   
+              <div class="invalid-feedback">
+               <b>masukkan gambar!</b>
+              </div>
               <img width="100%" src="{{ asset('gambarMember/' . $members->gambar) }}" alt="">         
       </div>
       <div class="modal-footer">
       <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-      <button type="submit" style="background-color: #825ee4;color:white" class="btn btn-primary">Submit</button>
+      <button type="submit" style="background-color:#825ee4;color:white" class="btn btn-primary">Submit</button>
       </div>
   </form>
   </div>

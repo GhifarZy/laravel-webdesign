@@ -150,7 +150,11 @@ class backendController extends Controller
     public function postMembers(Request $request)
     {
         $request->validate([
+            'nama' => 'required',
             'username' => 'required|unique:profiles',
+            'pekerjaan' => 'required',
+            'alamat' => 'required',
+            'gambar' => 'required',
         ]);
 
         $gambar = $request->gambar;
@@ -180,7 +184,11 @@ class backendController extends Controller
     public function postMembersInAdmin(Request $request)
     {
         $request->validate([
+            'nama' => 'required',
             'username' => 'required|unique:profiles',
+            'pekerjaan' => 'required',
+            'alamat' => 'required',
+            'gambar' => 'required',
         ]);
 
         $gambar = $request->gambar;
@@ -234,6 +242,10 @@ class backendController extends Controller
     }
     public function updateGambarMembers(Request $request, profile $members)
     {
+        $request->validate([
+            'gambar' => 'required',
+        ]);
+
         $gambar = $request->gambar;
         $namaFile = $gambar->getClientOriginalName();
 
@@ -290,9 +302,22 @@ class backendController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function deleteMembers(profile $members)
     {
-        //
+        profile::destroy('id', $members->id);
+        return redirect('dashboardIdMembers');
+    }
+
+    public function deleteUser(User $members)
+    {
+        User::destroy('id', $members->id);
+        return redirect('dashboardAdmin');
+    }
+
+    public function deleteProfiles(profile $members)
+    {
+        profile::destroy('id', $members->id);
+        return redirect('dashboardMembers');
     }
 
     public function dataMembersExport()
